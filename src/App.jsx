@@ -39,30 +39,32 @@ export default function App() {
   const moves = history.map((_, move) => {
     const description = move > 0 ? `Go to move #${move}` : "Go to game start";
     return (
-      <li key={move}>
-        <button onClick={() => jumpTo(move)}>{description}</button>
+      <li className="m-3" key={move}>
+        <button
+          className="bg-white border border-black border-solid rounded active:bg-gray-200 hover:bg-gray-100 p-1"
+          onClick={() => jumpTo(move)}
+        >
+          {description}
+        </button>
       </li>
     );
   });
 
   return (
     <>
-      <div className="root">
+      <div className="font-sans m-5">
         <div className="status">{status}</div>
 
-        <div className="game-container">
-          
+        <div className="flex flex-row align-top gap-5">
           <div className="game">
             <Board values={currentSquares} onClick={handleClick} />
           </div>
 
           <div className="history">
-            <h3>History: </h3>
-            <ol>{moves}</ol>
+            <h3 className="m-0">History: </h3>
+            <ol className="list-decimal">{moves}</ol>
           </div>
-        
         </div>
-
       </div>
     </>
   );
