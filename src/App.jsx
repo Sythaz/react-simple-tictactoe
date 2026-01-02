@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Board from './components/board'
+import { calculateWinner } from "./utils/gameLogic";
 
 export default function App() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
@@ -53,53 +55,5 @@ export default function App() {
         <ol>{moves}</ol>
       </div>
     </>
-  );
-}
-
-function Board({ values, onClick }) {
-  return (
-    <div className="board">
-      {values.map((square, i) => (
-        <Square
-          key={i}
-          square={square}
-          onSquareClick={() => onClick(i)}
-        />
-      ))}
-    </div>
-  );
-}
-
-function calculateWinner(step) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (
-      step[a] &&
-      step[a] === step[b] &&
-      step[a] === step[c]
-    ) {
-      return step[a];
-    }
-  }
-
-  return null;
-}
-
-function Square({ square, onSquareClick }) {
-  return (
-    <button className="square" onClick={onSquareClick}>
-      {square}
-    </button>
   );
 }

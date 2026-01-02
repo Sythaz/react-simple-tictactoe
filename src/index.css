@@ -23,8 +23,3 @@ body {
   grid-template-columns: repeat(3, 35px);
   grid-template-rows: repeat(3, 35px);
 }
-
-.status {
-  margin-bottom: 16px;
-  font-weight: bold;
-}
